@@ -1,7 +1,5 @@
 import mlflow
 from mlflow.tracking import MlflowClient
-
-# Assume you want to register the best model from taxi-fare-v1
 mlflow.set_tracking_uri("mlruns")
 
 # 1. Search for the best run
@@ -26,12 +24,12 @@ if experiment:
         print(f"Registering model: {name}")
         result = mlflow.register_model(model_uri, name)
         
-        # 3. Promote to production
-        print(f"Promoting version {result.version} to Production")
-        client.transition_model_version_stage(
+        # 3. Promote to production using an ALIAS (since Stages are deprecated in new MLflow)
+        print(f"Setting alias 'production' to version {result.version}")
+        client.set_registered_model_alias(
             name=name,
-            version=result.version,
-            stage="Production"
+            alias="production",
+            version=result.version
         )
         print("Done!")
     else:
