@@ -1,0 +1,19 @@
+# MLflow
+mlruns/
+mlruns.db
+mlflow.db
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# DVC (if added later)
+/data/
