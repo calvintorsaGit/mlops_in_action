@@ -1,6 +1,6 @@
-# MLOps in Action — 2-Week Learning Pathway
+# MLOps in Action — 4-Week Learning Pathway
 
-A practical guide to learn MLOps fundamentals in 14 days. No buzzwords, just what you need to know and do.
+A practical guide to learn production-grade MLOps in 28 days. Covers the full stack: experiment tracking, packaging, cloud deployment, Kubernetes, model serving with KServe, managed ML with SageMaker, and pipeline orchestration with Kubeflow.
 
 ---
 
@@ -25,29 +25,51 @@ Your ML model code is maybe 10% of a production ML system. The other 90% is infr
 | 5-6 | CI/CD for ML (GitHub Actions) | [03-ci-cd.md](docs/03-ci-cd.md) |
 | 7   | Week 1 Review & Mini Project | [04-week1-project.md](docs/04-week1-project.md) |
 
-### Week 2: Production
+### Week 2: Production Pipelines
 
 | Day | Topic | Doc |
 |-----|-------|-----|
 | 8-9   | Pipeline Orchestration (Prefect) | [05-pipeline-orchestration.md](docs/05-pipeline-orchestration.md) |
 | 10-11 | Model Monitoring & Data Drift | [06-model-monitoring.md](docs/06-model-monitoring.md) |
-| 12-13 | Cloud Deployment & Scaling | [07-cloud-deployment.md](docs/07-cloud-deployment.md) |
-| 14    | Capstone Project | [08-capstone-project.md](docs/08-capstone-project.md) |
+| 12-13 | Cloud Deployment & Scaling (AWS ECS / GCP Cloud Run) | [07-cloud-deployment.md](docs/07-cloud-deployment.md) |
+| 14    | Week 2 Capstone | [08-capstone-project.md](docs/08-capstone-project.md) |
+
+### Week 3: Kubernetes & Model Serving
+
+| Day | Topic | Doc |
+|-----|-------|-----|
+| 15-16 | Kubernetes Fundamentals (Pods, Deployments, Services) | [09-kubernetes-fundamentals.md](docs/09-kubernetes-fundamentals.md) |
+| 17-18 | Deploy ML Model on Kubernetes (kubectl, Helm) | [10-kubernetes-ml-deploy.md](docs/10-kubernetes-ml-deploy.md) |
+| 19-20 | KServe — Production Model Serving on K8s | [11-kserve.md](docs/11-kserve.md) |
+| 21    | Week 3 Review & KServe Mini Project | [12-week3-project.md](docs/12-week3-project.md) |
+
+### Week 4: Managed ML Platforms
+
+| Day | Topic | Doc |
+|-----|-------|-----|
+| 22-23 | AWS SageMaker — Training, Registry & Endpoints | [13-sagemaker.md](docs/13-sagemaker.md) |
+| 24-25 | Kubeflow — ML Pipelines at Scale | [14-kubeflow.md](docs/14-kubeflow.md) |
+| 26-27 | DVC Advanced — Data Versioning & Remote Storage | [15-dvc-advanced.md](docs/15-dvc-advanced.md) |
+| 28    | Final Capstone — End-to-End Production MLOps | [16-final-capstone.md](docs/16-final-capstone.md) |
 
 ---
 
 ## Tools Overview
 
-| Tool | Purpose |
-|------|---------|
-| MLflow | Track experiments, log metrics, save models |
-| DVC | Version control for datasets |
-| Docker | Package model + dependencies into a container |
-| FastAPI | Serve model as a REST API |
-| GitHub Actions | Automate testing and deployment |
-| Prefect | Orchestrate multi-step ML workflows |
-| Evidently AI | Monitor data drift and model quality |
-| AWS / GCP / Azure | Run models in the cloud |
+| Tool | Purpose | Week |
+|------|---------|------|
+| MLflow | Track experiments, log metrics, save models | 1 |
+| DVC | Version control for datasets and models | 1 & 4 |
+| Docker | Package model + dependencies into a container | 1 |
+| FastAPI | Serve model as a REST API | 1 |
+| GitHub Actions | Automate testing and deployment | 1 |
+| Prefect | Orchestrate multi-step ML workflows | 2 |
+| Evidently AI | Monitor data drift and model quality | 2 |
+| AWS / GCP / Azure | Run models in the cloud | 2 |
+| Kubernetes (K8s) | Manage and scale containerized workloads | 3 |
+| KServe | Production-grade model serving on Kubernetes | 3 |
+| AWS SageMaker | Managed ML platform: training, tuning, deployment | 4 |
+| Kubeflow | End-to-end ML pipelines on Kubernetes | 4 |
 
 ---
 
@@ -93,7 +115,7 @@ Check off each item as you complete it. This is your full pathway from zero to p
 ### Pipeline Orchestration (Day 8-9)
 - [ ] Install Prefect
 - [ ] Convert your ML workflow into tasks and flows
-- [ ] Run a pipeline that does: load data -> preprocess -> train -> evaluate
+- [ ] Run a pipeline that does: load data → preprocess → train → evaluate
 - [ ] View your pipeline runs in the Prefect UI
 - [ ] Add error handling and retries to tasks
 - [ ] (Bonus) Schedule a pipeline to run daily
@@ -113,7 +135,7 @@ Check off each item as you complete it. This is your full pathway from zero to p
 - [ ] Know what Kubernetes does (don't need to master it yet)
 - [ ] Set up a load balancer in front of your model API
 
-### Capstone (Day 14)
+### Week 2 Capstone (Day 14)
 - [ ] Build an end-to-end MLOps pipeline with all the pieces connected
 - [ ] Version data with DVC
 - [ ] Track experiments with MLflow
@@ -123,6 +145,76 @@ Check off each item as you complete it. This is your full pathway from zero to p
 - [ ] Serve with FastAPI
 - [ ] Monitor with Evidently
 
+### Kubernetes Fundamentals (Day 15-16)
+- [ ] Understand Kubernetes architecture: control plane, nodes, pods
+- [ ] Install `kubectl` and connect to a cluster (use Minikube or Kind locally)
+- [ ] Deploy your Docker image as a Kubernetes Deployment
+- [ ] Expose it with a Kubernetes Service
+- [ ] Scale pods up and down manually
+- [ ] Understand resource requests and limits (CPU, memory)
+- [ ] Understand ConfigMaps and Secrets
+
+### Kubernetes ML Deployment (Day 17-18)
+- [ ] Package your ML app with Helm charts
+- [ ] Deploy to a real cluster (EKS, GKE, or AKS)
+- [ ] Set up Horizontal Pod Autoscaler (HPA) for auto-scaling
+- [ ] Set up health checks (readiness and liveness probes)
+- [ ] Roll out a new model version with zero downtime
+- [ ] (Bonus) Use Ingress + TLS for public HTTPS endpoint
+
+### KServe (Day 19-20)
+- [ ] Understand what KServe is and how it differs from plain Kubernetes
+- [ ] Install KServe on a Kubernetes cluster (or use a managed version)
+- [ ] Deploy an MLflow model using a KServe `InferenceService`
+- [ ] Send prediction requests to the KServe endpoint
+- [ ] Understand Canary rollouts in KServe
+- [ ] Enable model explainability with KServe explainers
+- [ ] (Bonus) Enable request batching and autoscaling with KServe
+
+### Week 3 Review (Day 21)
+- [ ] Deploy your taxi fare model on Kubernetes via KServe
+- [ ] Set up canary deployment switching between two model versions
+- [ ] Document your cluster setup in code (YAML / Helm)
+
+### AWS SageMaker (Day 22-23)
+- [ ] Understand SageMaker's core concepts: Training Jobs, Models, Endpoints
+- [ ] Set up AWS credentials and SageMaker Studio
+- [ ] Run a training job on SageMaker using a built-in algorithm
+- [ ] Register a trained model in the SageMaker Model Registry
+- [ ] Deploy a real-time inference endpoint
+- [ ] Run batch transform jobs for large-scale predictions
+- [ ] Understand SageMaker Pipelines for automated retraining
+- [ ] (Bonus) Use SageMaker Experiments to track runs (vs MLflow)
+
+### Kubeflow (Day 24-25)
+- [ ] Understand Kubeflow's components: Pipelines, Katib, KFServing
+- [ ] Install Kubeflow on a Kubernetes cluster (or use Kubeflow on GKE)
+- [ ] Build a Kubeflow Pipeline with Python SDK (`kfp`)
+- [ ] Run a pipeline: data ingest → preprocess → train → evaluate → deploy
+- [ ] Use Kubeflow Katib for hyperparameter tuning
+- [ ] Understand the difference between Kubeflow Pipelines and Prefect/Airflow
+- [ ] (Bonus) Integrate Kubeflow with MLflow for experiment tracking
+
+### DVC Advanced (Day 26-27)
+- [ ] Set up DVC with a remote storage backend (S3, GCS, or Azure Blob)
+- [ ] Version datasets and push/pull from remote
+- [ ] Build a DVC pipeline (`dvc.yaml`) for reproducible ML workflows
+- [ ] Use `dvc repro` to reproduce the full pipeline
+- [ ] Compare metrics across DVC experiments with `dvc metrics diff`
+- [ ] Integrate DVC pipelines with GitHub Actions for CI/CD
+- [ ] (Bonus) Use DVC Studio for team experiment visibility
+
+### Final Capstone (Day 28)
+- [ ] Build a fully production-grade MLOps system from scratch
+- [ ] Version data with DVC (remote S3 storage)
+- [ ] Track experiments with MLflow
+- [ ] Build retraining pipelines with Kubeflow or Prefect
+- [ ] Package with Docker
+- [ ] Deploy on Kubernetes with KServe or SageMaker endpoint
+- [ ] Automate everything with GitHub Actions CI/CD
+- [ ] Monitor with Evidently + Grafana
+- [ ] Write a technical README documenting the full architecture
+
 ---
 
 ## How to Use This Guide
@@ -130,7 +222,7 @@ Check off each item as you complete it. This is your full pathway from zero to p
 1. Read the docs in order. Each one builds on the previous.
 2. Type the code yourself. Don't copy-paste.
 3. Break things on purpose. That's how you learn what each piece does.
-4. Use one project throughout — build a taxi fare predictor from Day 1 to Day 14.
+4. Use one project throughout — build a taxi fare predictor from Day 1 to Day 28.
 
 ---
 
@@ -143,3 +235,8 @@ Check off each item as you complete it. This is your full pathway from zero to p
 | Full Stack Deep Learning | Course | https://fullstackdeeplearning.com |
 | Designing ML Systems (Chip Huyen) | Book | https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/ |
 | MLflow Docs | Docs | https://mlflow.org/docs/latest |
+| Kubernetes Docs | Docs | https://kubernetes.io/docs/home/ |
+| KServe Docs | Docs | https://kserve.github.io/website/ |
+| AWS SageMaker Docs | Docs | https://docs.aws.amazon.com/sagemaker/ |
+| Kubeflow Docs | Docs | https://www.kubeflow.org/docs/ |
+| DVC Docs | Docs | https://dvc.org/doc |
